@@ -4,12 +4,8 @@ on:
   push:
     paths:                                  
       #- '**.json'
-      #- 'JSONs_Validation/**json'           #IT SHOULD ONLY CHECK THIS PATH, REVIEW!!!
-      #- '!JSONs_Error/**json'
-      #- '!JSONs_OK/**json'
-      #- 'JSONs_Validation/2delete.json'
-      #- .github/workflows/jsoncheck.yml
-      
+      - 'ToValidate/'  #When JSON is added, the check process starts         
+   
  
 
 jobs:
