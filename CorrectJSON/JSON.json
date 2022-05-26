@@ -1,7 +1,7 @@
 {
   "id": 7,
   "name": "John Doe",
-  "age": twelve,
+  "age": "twelve",
   "hobbies": {
         "indoor": [
             "Chess"
