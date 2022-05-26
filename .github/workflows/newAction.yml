@@ -20,8 +20,15 @@ jobs:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
 
+      #JSON file to validate check
       - uses: Zingabopp/JsonValidate-Action@v1
         with:
           json-schema: CorrectJSON/schema.json
-          json-file: CorrectJSON/JSON.json
+          json-file: ToValidate/JSON.json
+          
+          
+          
+      #Move JSON validated from ToValidate folder to CorrectJSON folder 
+      - name: move-to-CorrectJSON     
+        run: git mv 'ToValidate/JSON.json' 'CorrectJSON/JSON.json'  
           
