@@ -25,7 +25,13 @@ jobs:
         with:
           json-schema: CorrectJSON/schema.json
           json-file: ToValidate/JSON.json
-          
+         
+         
+      #Delete old JSON.json in CorrectJSON/ (due to is not possible to overwrite) 
+      - name: delete-old-CorrectJSON
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: 'CorrectJSON/JSON.json' 
           
           
       #Move JSON validated from ToValidate folder to CorrectJSON folder 
