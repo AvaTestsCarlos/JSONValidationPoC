@@ -1,11 +1,11 @@
-name: jsoncheck
+name: JSONValidator
 
 on:
   push:
     paths:                                  
       #- '**.json'
-      #- 'ToValidate/**'  #When JSON is added, the check process starts   
-      - .github/workflows/newAction.yml
+      - 'ToValidate/**'  #When JSON is added, the check process starts   
+      #- .github/workflows/newAction.yml
    
  
  
@@ -38,3 +38,15 @@ jobs:
       - name: move-to-CorrectJSON     
         run: git mv 'ToValidate/JSON.json' 'CorrectJSON/JSON.json'  
           
+          
+      #Commit from runner
+      - name: Commit files
+        run: |
+          git config --local user.email "GitHub_Actions@github.com"
+          git config --local user.name "GitHub_Actions"
+          git commit -m "JSON Validated" -a
+          
+          
+      #Push from runner to GitHub
+      - name: Push changes
+        run: git push origin main
