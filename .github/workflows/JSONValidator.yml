@@ -4,8 +4,8 @@ on:
   push:
     paths:                                  
       #- '**.json'
-      #- 'ToValidate/**'  #When JSON is added, the check process starts   
-      - .github/workflows/JSONValidator.yml
+      - 'ToValidate/**'  #When JSON is added, the check process starts   
+      #- .github/workflows/JSONValidator.yml
    
  
  
