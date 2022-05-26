@@ -1,0 +1,13 @@
+{
+  "id": 49,
+  "name": "JC Montero",
+  "age": 28,
+  "hobbies": {
+        "indoor": [
+            "Chess"
+        ],
+        "outdoor": [
+            "BasketballStand-up Comedy"
+        ]
+    }
+}
