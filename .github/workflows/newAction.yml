@@ -24,4 +24,4 @@ jobs:
         with:
           json-schema: CorrectJSON/schema.json
           json-file: CorrectJSON/JSON.json
-          use-draft: draft-06
+          
