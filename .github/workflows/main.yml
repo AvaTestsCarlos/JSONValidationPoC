@@ -1,0 +1,65 @@
+name: jsoncheck
+
+on:
+  push:
+    paths:                                  
+      #- '**.json'
+      #- 'JSONs_Validation/**json'           #IT SHOULD ONLY CHECK THIS PATH, REVIEW!!!
+      #- '!JSONs_Error/**json'
+      #- '!JSONs_OK/**json'
+      #- 'JSONs_Validation/2delete.json'
+      #- .github/workflows/jsoncheck.yml
+      
+ 
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      #Checkout and token for connexion
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          
+
+      #Clean JSONs_Validation folder 
+      - name: Clean JSONs_Validation folder
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: 'JSONs_Validation/Validating.json'  #Will delete if there is Validating.json (JSON with errors from a previous run)
+
+
+      #Move JSON validated from root to Validation folder 
+      - name: move-to-JSONs_Validation     
+        run: git mv 'Validating.json' 'JSONs_Validation/Validating.json'  #Will move Validating.json to Validation folder before Check
+
+
+      #Check all JSON files in repo             
+      - name: json-syntax-check                    #To asure that Action only stops if Validating.json is the only json with errors, will be done in a dedicated branch considering that the other jsons in repo are ok in Develop
+        uses: limitusus/json-syntax-check@v1
+        with:
+          pattern: "\\.json$"
+          
+      
+       
+      #*******************************IF VALIDATING.JSON HAS ERRORS, ACTIONS STOPS AND FILE REMAINS IN JSONs_Validation folder*******************************
+      
+
+
+      #Move JSON if json-syntax-check (Validation) is passed 
+      - name: move-to-JSONs_Checked       
+        run: git mv 'JSONs_Validation/Validating.json' 'JSONs_Checked/OK.json'      #Move from Validation 2 Checked
+        #run: cp my_file.json tests/copy_of_my_file.json -> with cp instead of mv
+         
+
+      #Commit from runner
+      - name: Commit files
+        run: |
+          git config --local user.email "GitHub_Actions@github.com"
+          git config --local user.name "GitHub_Actions"
+          git commit -m "JSON Validated" -a
+      #Push from runner to GitHub
+      - name: Push changes
+        run: git push origin main
+        
