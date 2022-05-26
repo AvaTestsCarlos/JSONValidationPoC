@@ -4,7 +4,8 @@ on:
   push:
     paths:                                  
       #- '**.json'
-      - 'ToValidate/**'  #When JSON is added, the check process starts         
+      #- 'ToValidate/**'  #When JSON is added, the check process starts   
+      - .github/workflows/newAction.yml
    
  
 
@@ -16,10 +17,10 @@ jobs:
       #Checkout and token for connexion
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.PERSONAL_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
 
       - uses: Zingabopp/JsonValidate-Action@v1
         with:
-          json-schema: Path/To/Your/Schema.json
-          json-file: Path/To/Your/JsonFile.json
+          json-schema: CorrectJSON/schema.json
+          json-file: CorrectJSON/JSON.json
