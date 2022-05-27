@@ -1,1 +1,2 @@
-In ToValidate/ path will be added de JSON file that is needed to be checked.
+# ToValidate
+Folder where JSON file that is expected to be validated is uploaded.
