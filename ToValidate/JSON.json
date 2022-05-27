@@ -1,0 +1,13 @@
+{
+  "id": 39
+  "name": 17,
+  "age": "Alfredo",
+  "hobbies": {
+        "indoor": [
+            "Chess"
+        ],
+        "outdoor": [
+            "BasketballStand-up Comedy"
+        ]
+    }
+}
