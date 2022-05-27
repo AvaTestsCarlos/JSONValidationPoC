@@ -1,2 +1,2 @@
 # JSONValidationPoC
-Repo separado para la PoC
+Repo used for JSON file Validation PoC using GitHub Actions.
